@@ -10,6 +10,8 @@ import Movies from "./Componets/Movies/Movies";
 import People from './Componets/Movies/People';
 import SinglePeople from './Componets/Movies/SinglePeople';
 import Search from './Componets/Search/Search';
+import LogIn from './Componets/Movies/Page/LogIn';
+import LogUp from './Componets/Movies/Page/LogUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +22,8 @@ root.render(
           <Route index element={<Search />}></Route>
           <Route path="/movie" element={<Movies />} />
           <Route path="/people" element={<People/>} />
+          <Route path="login" element={<LogIn/>} />
+          <Route path="logup" element={<LogUp/>} />
           <Route path='/people/:id' element={<SinglePeople/>}/>
         </Route>
       </Routes>

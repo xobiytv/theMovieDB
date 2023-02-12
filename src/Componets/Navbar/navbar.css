@@ -1,3 +1,20 @@
 .appBar{
-  background-color: rgb(3,37,65);
+  background-color: rgb(3,37,65) !important;
+}
+
+.nav-i li{
+  color:  white  !important;
+  list-style: none;
+  text-decoration: none;
+  height: 30px;
+}
+.nav-i li a{
+  color:  white  !important;
+  list-style: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(10px);
+  padding-left: 20px;
 }

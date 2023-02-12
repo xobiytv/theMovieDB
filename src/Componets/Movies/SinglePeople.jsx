@@ -2,6 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import { Icon } from "react-icons-kit";
+import { facebook } from "react-icons-kit/feather/facebook";
+import { twitter } from "react-icons-kit/feather/twitter";
+import {instagram} from 'react-icons-kit/feather/instagram'
 
 import "./signpeople.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,7 +20,7 @@ export default function SinglePeople() {
   useEffect(() => {
     axios
       .get(
-        // `https://api.themoviedb.org/3/person/popular?api_key=66abca2db221b711948f5d3310f1e6e3&language=en-US`
+        // `https://api.themoviedb.org/3/person/${peopleID.id}?/movie_credits?api_key=66abca2db221b711948f5d3310f1e6e3&language=en-US`,
         `https://api.themoviedb.org/3/person/${peopleID.id}?api_key=66abca2db221b711948f5d3310f1e6e3&language=en-US`
       )
       .then((res) => {
@@ -151,6 +158,47 @@ export default function SinglePeople() {
                   <div className="column">
                     <section className="full_wrapper facts left_column">
                       <div className="social_links"></div>
+                      <OverlayTrigger
+                        overlay={
+                          <Tooltip id="tooltip-disabled">Vist Facebook!</Tooltip>
+                        }
+                      >
+                        <span className="d-inline-block">
+                          <Button disabled style={{ pointerEvents: "none" }}>
+                            <div style={{ width: 24, height: 24 }}>
+                              <Icon size={"100%"} icon={facebook} />
+                            </div>
+                          </Button>
+                        </span>
+                      </OverlayTrigger>
+                      <OverlayTrigger
+                        overlay={
+                          <Tooltip id="tooltip-disabled">Vist Twitter!</Tooltip>
+                        }
+                      >
+                        <span className="d-inline-block">
+                          <Button disabled style={{ pointerEvents: "none" }}>
+                            <div style={{ width: 24, height: 24 }}>
+                              <Icon size={"100%"} icon={twitter} />
+                            </div>
+                          </Button>
+                        </span>
+                      </OverlayTrigger>
+                      <OverlayTrigger
+                        overlay={
+                          <Tooltip id="tooltip-disabled">
+                            Vist Instagram!
+                          </Tooltip>
+                        }
+                      >
+                        <span className="d-inline-block">
+                          <Button disabled style={{ pointerEvents: "none" }}>
+                            <div style={{ width: 24, height: 24 }}>
+                              <Icon size={"100%"} icon={instagram} />
+                            </div>
+                          </Button>
+                        </span>
+                      </OverlayTrigger>
 
                       <h3>
                         <bdi>Personal Info</bdi>
@@ -159,15 +207,14 @@ export default function SinglePeople() {
                       <section>
                         <p>
                           <strong>
-                            <bdi>Known For</bdi>
-                          </strong>{" "}
-                          Acting
+                            <bdi>Known For </bdi>
+                          </strong>
+                          {peopleData.name}
                         </p>
                         <p>
                           <strong>
                             <bdi>Known Credits</bdi>
                           </strong>{" "}
-                          204
                         </p>
                         <p>
                           <strong>
@@ -179,34 +226,22 @@ export default function SinglePeople() {
                           <strong>
                             <bdi>Birthday</bdi>
                           </strong>
-                          1952-06-07 (70 years old)
+                          {peopleData.birthday}
                         </p>
                         <p className="full">
                           <strong>
                             <bdi>Place of Birth</bdi>
                           </strong>{" "}
-                          Ballymena, County Antrim, Northern Ireland, UK
+                          {peopleData.place_of_birth}
                         </p>
 
                         <p className="full true">
                           <strong>
                             <bdi>Also Known As</bdi>
-                          </strong>
+                          </strong>{" "}
                         </p>
                         <ul>
-                          <li itemprop="additionalName">連恩·尼遜</li>
-                          <li itemprop="additionalName">เลียม นีสัน</li>
-                          <li itemprop="additionalName">Лиам Нисон</li>
-                          <li itemprop="additionalName">リーアム・ニーソン</li>
-                          <li itemprop="additionalName">리암 니슨</li>
-                          <li itemprop="additionalName">ليام نيسون</li>
-                          <li itemprop="additionalName">Ліам Нісон</li>
-                          <li itemprop="additionalName">Вільям Джон Нісон</li>
-                          <li itemprop="additionalName">连姆·尼森</li>
-                          <li itemprop="additionalName">
-                            William John "Liam" Neeson OBE
-                          </li>
-                          <li itemprop="additionalName">Λίαμ Νίσον</li>
+                          <li itemprop="additionalName"></li>
                         </ul>
                       </section>
 
@@ -218,31 +253,7 @@ export default function SinglePeople() {
                         </p>
                       </div>
 
-                      <div className="keyboard_shortcut_text">
-                        <p>
-                          <a
-                            id="keyboard_shortcuts"
-                            className="no_click"
-                            href="#"
-                          >
-                            <span className="glyphicons_v2 keyboard"></span>{" "}
-                            Keyboard Shortcuts
-                          </a>
-                        </p>
-                      </div>
-
-                      <div className="report_issue">
-                        <p className="report_issue">
-                          <a
-                            className="no_click report"
-                            window="person"
-                            href="#"
-                          >
-                            <span className="glyphicons_v2 speech-bubble-alert"></span>{" "}
-                            Report an Issue
-                          </a>
-                        </p>
-                      </div>
+                    
                     </section>
                   </div>
                 </div>
@@ -251,7 +262,8 @@ export default function SinglePeople() {
                   <section>
                     <div className="title" dir="auto">
                       <h2 className="title">
-                        <a href="/person/3896-liam-neeson">Liam Neeson</a>
+                        {peopleData.name}
+                        {/* <a href="/person/3896-liam-neeson">Liam Neeson</a> */}
                       </h2>
                     </div>
                   </section>
@@ -261,46 +273,7 @@ export default function SinglePeople() {
                     <div dir="auto" className="biography true">
                       <div className="content fade_text">
                         <div className="text initial truncate should_fade">
-                          <p>
-                            An Irish actor who has been nominated for an Oscar,
-                            a BAFTA and three Golden Globe Awards. He has
-                            starred in a number of notable roles including Oskar
-                            Schindler in Schindler's List, Michael Collins in
-                            Michael Collins, Peyton Westlake in Darkman, Jean
-                            Valjean in Les Misérables, Qui-Gon Jinn in Star Wars
-                            Episode I: The Phantom Menace, Alfred Kinsey in
-                            Kinsey, Ras Al Ghul in Batman Begins and the voice
-                            of Aslan in The Chronicles of Narnia film series. He
-                            has also starred in several other notable films,
-                            from major Hollywood studio releases (ie. Excalibur,
-                            The Dead Pool, Nell, Rob Roy, The Haunting, Love
-                            Actually, Kingdom of Heaven, Taken, Clash of the
-                            Titans, The A-Team, Unknown) to smaller arthouse
-                            films (ie. Deception, Breakfast on Pluto, Chloe).
-                          </p>
-                          <p>
-                            He was born in Ballymena, County Antrim, Northern
-                            Ireland and educated at Saint Patrick's College,
-                            Ballymena Technical College and Queen's University
-                            Belfast. He moved to Dublin after university to
-                            further his acting career, joining the renowned
-                            Abbey Theatre. In the early 1990s, he moved again to
-                            the United States, where the wide acclaim for his
-                            performance in Schindler's List led to more
-                            high-profile work. He is widowed and lives in New
-                            York with his two sons.
-                          </p>
-                          <p>
-                            Description above from the Wikipedia article Liam
-                            Neeson, licensed under CC-BY-SA, full list of
-                            contributors on Wikipedia.
-                          </p>
-                        </div>
-                        <div className="read_more">
-                          <a className="read_more no_click" href="#">
-                            Read More{" "}
-                            <span className="glyphicons_v2 chevron-right"></span>
-                          </a>
+                          <p>{peopleData.biography}</p>
                         </div>
                       </div>
                     </div>
@@ -315,23 +288,6 @@ export default function SinglePeople() {
                         className="scroller_wrap should_fade is_fading"
                       >
                         <ul className="horizontal_media_list scroller">
-                          <li className="account_adult_false item_adult_false">
-                            <div className="image">
-                              <a href="/movie/424">
-                                <img
-                                  src={imageUrl + peopleData.backdrop_path}
-                                  alt=""
-                                />
-                                {/* <img loading="lazy" className="poster" src="/t/p/w150_and_h225_bestv2/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg" srcset="/t/p/w150_and_h225_bestv2/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg 1x, /t/p/w300_and_h450_bestv2/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg 2x" alt="Schindler's List"> */}
-                              </a>
-                            </div>
-                            <p>
-                              <a className="title" href="/movie/424">
-                                <bdi>Schindler's List</bdi>
-                              </a>
-                            </p>
-                          </li>
-
                           <li className="account_adult_false item_adult_false">
                             <div className="image">
                               <a href="/movie/424">

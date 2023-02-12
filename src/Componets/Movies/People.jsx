@@ -14,7 +14,7 @@ export default function People() {
       )
       .then((res) => {
         setPeopleData(res.data.results);
-        console.log(res.data.results);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error.massage);

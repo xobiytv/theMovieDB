@@ -26,9 +26,9 @@ section .inner_content {
     background-position: 50% 50%;
    
 }
-.btn-d{
+/* .btn-d{
   color: black !important;
-}
+} */
 div.header.large.first {
     width: 100%;
     position: relative;
@@ -182,7 +182,7 @@ ul .dropdown_menu .k-menu {
     -webkit-font-smoothing: antialiased;
 }
 
-.rounded, .new_button, .pad{
+ .pad {
       background-color: rgba(1,180,228, 1);
     border-color: rgba(1,180,228, 1);
     border-radius: 20px;
@@ -190,8 +190,16 @@ ul .dropdown_menu .k-menu {
     align-items: center;
     align-content: center;
     padding: 6px 20px;
-    font-size: 0.9em;
-    color: white;
+    font-size: 17px;
+    text-decoration: none;
+    color: white !important;
+}
+
+ .pad a{
+      
+    font-size: 17px;
+    text-decoration: none;
+    color: white !important;
 }
 
 .keyboard_shortcut_text{
@@ -366,7 +374,14 @@ footer nav ul li  {
     overflow: hidden;
     text-overflow: ellipsis;
     color: #fff;
+    
 }
 footer nav, footer nav a {
     color: #fff;
+    text-decoration: none;
+
+}
+
+ul{
+    padding: 0 !important;
 }

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 // import { Link, Outlet } from "react-router-dom";
 // import Footer from "./Componets/Navbar/Footer";
+import "./search.css";
 export default function Search() {
   // let imageUrl = "https://image.tmdb.org/t/p/w500/";
   const [searchValue, SetSearchValue] = useState({});
@@ -17,22 +18,46 @@ export default function Search() {
   }
   return (
     <div>
-      <div className="container my-3 d-flex">
-        <input
-          onInput={(item) => {
-            SetSearchValue(item.target.value);
-          }}
-          className="form-control"
-          type="text"
-        />
-        <button
-          onClick={() => {
-            searchFunction();
-          }}
-        >
-          Qidirosh
-        </button>
-      </div>
+      
+
+      <section class="inner_content new_index">
+        <div id="media_v4" class="media discover">
+          <div class="column_wrapper">
+            <div class=" col-12">
+              <div class="title col-12">
+                <h2>Welcome.</h2>
+                <h3>
+                  Millions of movies, TV shows and people to discover. Explore
+                  now.
+                </h3>
+              </div>
+
+              <div class="search col-12">
+                <form id="inner_search_form">
+                  <label>
+                    {/* <input dir="auto" id="inner_search_v4" name="query" type="text" tabindex="1" autocorrect="off" autofill="off" autocomplete="off" spellcheck="false" placeholder="Search for a movie, tv show, person......" value=""></input> */}
+                    <input
+                      onInput={(item) => {
+                        SetSearchValue(item.target.value);
+                      }}
+                      
+                      type="text"
+                      placeholder="Search for a movie, tv show, person......"
+                    />
+                  </label>
+                  <button
+                    onClick={() => {
+                      searchFunction();
+                    }}
+                  >
+                    Search
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

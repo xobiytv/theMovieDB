@@ -9,13 +9,13 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-// import AdbIcon from "@mui/icons-material/Adb";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
+import {Link } from 'react-router-dom'
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import './navbar.css'
-// import { Link } from "@mui/material";
 import MenuBar from "./ManuBar"
-// import movie from '../Movies/Movies'
+// import { color } fro<input dir="auto" id="inner_search_v4" name="query" type="text" tabindex="1" autocorrect="off" autofill="off" autocomplete="off" spellcheck="false" placeholder="Search for a movie, tv show, person......" value="">m "@mui/system";
 
 const pages = [
   {
@@ -76,37 +76,12 @@ const pages = [
 ];
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-// const log = [
-//   {
-//     name: "+",
-//     path: '/upcomimt#'
-//   },
-//    {
-//     name: "uz",
-//     child: [
-//       { name: "ru", path: "/ru" },
-//       { name: "eng", path: "/eng" },
-      
-//     ],
-//   },
-//     {
-//     name: "LogIn",
-//     path: '/login'
-//   },
-//     {
-//     name: "SoginUp",
-//     path: '/soginup'
-//   },
-// ];
-// const pages = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
   // const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
+ 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -122,66 +97,86 @@ function ResponsiveAppBar() {
   return (
     <div>
       <AppBar className="appBar" position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <img
-            src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
-            alt="logo"
-            width={150}
-          />
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <img
+              src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+              alt="logo"
+              width={150}
+            />
 
-          
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                <MenuBar state={page} />
-              </Button>
-            ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            {/* {log}  */}
-            {/* <MenuBar statelog={log} /> */}
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  <MenuBar state={page} />
+                </Button>
               ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-      </AppBar>
+            </Box>
 
-      
+            <Box
+              className="nav-i d-flex justify-content-around align-items-center text-decoration-none"
+              sx={{ flexGrow: 0 }}
+            >
+              {/* {log}  */}
+              {/* <MenuBar statelog={log} /> */}
+              {/* <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip> */}
+
+              {["bottom"].map((placement) => (
+                <OverlayTrigger
+                  trigger="click"
+                  key={placement}
+                  placement={placement}
+                  overlay={
+                    <Popover id={`popover-positioned-${placement}`}>
+                      <Popover.Body>
+                        Can't find a movie or TV show? Login to create it.
+                      </Popover.Body>
+                    </Popover>
+                  }
+                >
+                  <Button variant="secondary">
+                    <AddRoundedIcon />
+                  </Button>
+                </OverlayTrigger>
+              ))}
+              {["bottom"].map((placement) => (
+                <OverlayTrigger
+                  trigger="click"
+                  key={placement}
+                  placement={placement}
+                  overlay={
+                    <Popover id={`popover-positioned-${placement}`}>
+                      <Popover.Body>
+                        Can't find a movie or TV show? Login to create it.
+                      </Popover.Body>
+                    </Popover>
+                  }
+                >
+                  <Button variant="secondary">UZ</Button>
+                </OverlayTrigger>
+              ))}
+
+              <ul className="nav-i d-flex align-content-center justify-content-around text-decoration-none ">
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+                <li>
+                  <Link to="/logup">Join TMDB</Link>
+                </li>
+              </ul>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
     </div>
-    
   );
 }
 export default ResponsiveAppBar;
